@@ -31,6 +31,6 @@ jobs:
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2 
         
-      - name: Lint Affected Apps
-        run: nx run my-farm-manager-e2e:e2e --browser chrome
+      - name: Run specs
+        run: npx nx run my-farm-manager-e2e:e2e --browser chrome
 
