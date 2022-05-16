@@ -1,0 +1,385 @@
+{
+  "version": 1,
+  "projects": {
+    "about": {
+      "projectType": "library",
+      "root": "libs/about",
+      "sourceRoot": "libs/about/src",
+      "prefix": "myorg",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/about"],
+          "options": {
+            "jestConfig": "libs/about/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/about/src/**/*.ts",
+              "libs/about/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "header": {
+      "projectType": "library",
+      "root": "libs/header",
+      "sourceRoot": "libs/header/src",
+      "prefix": "myorg",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/header"],
+          "options": {
+            "jestConfig": "libs/header/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/header/src/**/*.ts",
+              "libs/header/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "login": {
+      "projectType": "library",
+      "root": "libs/login",
+      "sourceRoot": "libs/login/src",
+      "prefix": "myorg",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/login"],
+          "options": {
+            "jestConfig": "libs/login/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/login/src/**/*.ts",
+              "libs/login/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "my-farm-manager": {
+      "projectType": "application",
+      "root": "apps/my-farm-manager",
+      "sourceRoot": "apps/my-farm-manager/src",
+      "prefix": "myorg",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/my-farm-manager",
+            "index": "apps/my-farm-manager/src/index.html",
+            "main": "apps/my-farm-manager/src/main.ts",
+            "polyfills": "apps/my-farm-manager/src/polyfills.ts",
+            "tsConfig": "apps/my-farm-manager/tsconfig.app.json",
+            "assets": [
+              "apps/my-farm-manager/src/favicon.ico",
+              "apps/my-farm-manager/src/assets"
+            ],
+            "styles": ["apps/my-farm-manager/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/my-farm-manager/src/environments/environment.ts",
+                  "with": "apps/my-farm-manager/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "my-farm-manager:build:production"
+            },
+            "development": {
+              "browserTarget": "my-farm-manager:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "my-farm-manager:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/my-farm-manager/src/**/*.ts",
+              "apps/my-farm-manager/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/my-farm-manager"],
+          "options": {
+            "jestConfig": "apps/my-farm-manager/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "my-farm-manager-e2e": {
+      "root": "apps/my-farm-manager-e2e",
+      "sourceRoot": "apps/my-farm-manager-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/my-farm-manager-e2e/cypress.json",
+            "devServerTarget": "my-farm-manager:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "my-farm-manager:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/my-farm-manager-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["my-farm-manager"]
+    },
+    "services": {
+      "projectType": "library",
+      "root": "libs/services",
+      "sourceRoot": "libs/services/src",
+      "prefix": "myorg",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/services"],
+          "options": {
+            "jestConfig": "libs/services/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/services/src/**/*.ts",
+              "libs/services/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "shared-cypress-utils-cypress-commands": {
+      "root": "libs/shared-cypress-utils/cypress-commands",
+      "sourceRoot": "libs/shared-cypress-utils/cypress-commands/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared-cypress-utils/cypress-commands/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared-cypress-utils/cypress-commands"],
+          "options": {
+            "jestConfig": "libs/shared-cypress-utils/cypress-commands/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "shared-ui": {
+      "projectType": "library",
+      "root": "libs/shared/ui",
+      "sourceRoot": "libs/shared/ui/src",
+      "prefix": "myorg",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/ui"],
+          "options": {
+            "jestConfig": "libs/shared/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/ui/src/**/*.ts",
+              "libs/shared/ui/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "subscription": {
+      "projectType": "library",
+      "root": "libs/subscription",
+      "sourceRoot": "libs/subscription/src",
+      "prefix": "myorg",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/subscription"],
+          "options": {
+            "jestConfig": "libs/subscription/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/subscription/src/**/*.ts",
+              "libs/subscription/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "tasks-add-task": {
+      "projectType": "library",
+      "root": "libs/tasks/add-task",
+      "sourceRoot": "libs/tasks/add-task/src",
+      "prefix": "myorg",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/tasks/add-task"],
+          "options": {
+            "jestConfig": "libs/tasks/add-task/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/tasks/add-task/src/**/*.ts",
+              "libs/tasks/add-task/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "tasks-task": {
+      "projectType": "library",
+      "root": "libs/tasks/task",
+      "sourceRoot": "libs/tasks/task/src",
+      "prefix": "myorg",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/tasks/task"],
+          "options": {
+            "jestConfig": "libs/tasks/task/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/tasks/task/src/**/*.ts",
+              "libs/tasks/task/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "tasks-task-item": {
+      "projectType": "library",
+      "root": "libs/tasks/task-item",
+      "sourceRoot": "libs/tasks/task-item/src",
+      "prefix": "myorg",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/tasks/task-item"],
+          "options": {
+            "jestConfig": "libs/tasks/task-item/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/tasks/task-item/src/**/*.ts",
+              "libs/tasks/task-item/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    }
+  }
+}

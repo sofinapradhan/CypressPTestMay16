@@ -1,0 +1,36 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@myorg/about": ["libs/about/src/index.ts"],
+      "@myorg/login": ["libs/login/src/index.ts"],
+      "@myorg/services": ["libs/services/src/index.ts"],
+      "@myorg/shared-cypress-utils/cypress-commands": [
+        "libs/shared-cypress-utils/cypress-commands/src/index.ts"
+      ],
+      "@myorg/shared-cypress-utils/cypress-commands/support": [
+        "libs/shared-cypress-utils/cypress-commands/src/lib/support/index.ts"
+      ],
+      "@myorg/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@myorg/subscription": ["libs/subscription/src/index.ts"],
+      "@myorg/tasks-task": ["libs/tasks/task/src/index.ts"],
+      "@myorg/tasks/add-task": ["libs/tasks/add-task/src/index.ts"],
+      "@myorg/tasks/task-item": ["libs/tasks/task-item/src/index.ts"],
+      "header": ["libs/header/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
